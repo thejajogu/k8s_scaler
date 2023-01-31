@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ name }}
+spec:
+  replicas: {{ node_count }}
+  selector:
+    matchLabels:
+      type: interop-scale
+  template:
+    metadata:
+      labels:
+        type: interop-scale
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              type: interop-scale
+      containers:
+      - name: {{ name }}
+        image: {{ image }}

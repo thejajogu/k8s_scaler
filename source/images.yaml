@@ -1,0 +1,10 @@
+---
+images:
+- name: 1-nginx
+  image: nginx:1.14.2
+- name: 2-apache2
+  image: ubuntu/apache2:latest
+- name: 3-mongo
+  image: mongo:2
+- name: 4-bitnami
+  image: bitnami/nginx:latest
